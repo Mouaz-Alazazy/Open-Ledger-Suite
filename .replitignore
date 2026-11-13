@@ -3,3 +3,6 @@
 
 # No need to store the pnpm store twice.
 .local
+
+# Native build output is generated per operating system.
+artifacts/hisab/src-tauri/target/

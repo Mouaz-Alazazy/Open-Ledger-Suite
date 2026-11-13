@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "حساب | Hisab"
+description = "An Arabic, offline-first accounting system for managing transactions, ledgers, tax calculations, and financial summaries in the browser, designed for a shared-codebase Tauri desktop build."
+version = "1.0.0"
+id = "artifacts/hisab"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 23726
+
+[services.development]
+run = "pnpm --filter @workspace/hisab run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/hisab", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/hisab/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "23726"
+BASE_PATH = "/"
